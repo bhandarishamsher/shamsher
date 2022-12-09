@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+#define N 10
+void selectionsort(int[], int);
+void stringselection(char[][N], int);
+int main()
+{
+    int arr[] = {2, 45, 1, 0, 5, 6, 65, 78, 35};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    selectionsort(arr, size);
+    printf("\nsorted array\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    // char arr[][N] = {"suraj", "sumit", "aman", "arpit", "zubair", "bhanu", "Zan"};
+    // int size = sizeof(arr) / sizeof(arr[0]);
+    // stringselection(arr, size);
+    // printf("\nsorted arrat\n");
+    // for (int i = 0; i < size - 1; i++)
+    // {
+    //     printf("%s ", arr[i]);
+    // }
+}
+void selectionsort(int arr[], int size)
+{
+    for (int i = 0; i < size - 1; i++)
+    {
+        int min = arr[i];
+        int pos = i;
+        for (int j = i + 1; j < size; j++)
+        {
+            if (arr[j] < min)
+            {
+                min = arr[j];
+                pos = j;
+            }
+        }
+        if (pos != i)
+        {
+            arr[pos] = arr[i];
+            arr[i] = min;
+        }
+    }
+}
+void stringselection(char arr[][N], int size)
+{
+    for (int i = 0; i < size - 1; i++)
+    {
+        char min[N];
+        int pos = i;
+        strcpy(min, arr[i]);
+        for (int j = i + 1; j < size; j++)
+        {
+            if (strcmp(arr[j], min) < 0)
+            {
+                strcpy(min, arr[j]);
+                pos = j;
+            }
+        }
+        if (pos != i)
+        {
+            strcpy(arr[pos], arr[i]);
+            strcpy(arr[i], min);
+        }
+    }
+}
